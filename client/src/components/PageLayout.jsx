@@ -1,13 +1,8 @@
-import { useEffect } from "react";
-import { Outlet, Link, useNavigation, NavLink } from "react-router-dom";
+import { Outlet, useNavigation, NavLink } from "react-router-dom";
 
 const PageLayout = () => {
   const navigation = useNavigation();
   const loading = navigation.state === "loading";
-
-  useEffect(() => {
-    console.log(navigation.formAction, navigation.state);
-  }, [navigation]);
 
   return (
     <section>

@@ -45,7 +45,7 @@ export const saveOrEditUserDeatail = async ({ request }) => {
       ? await updateDetail(detailId, payload)
       : await saveNewDetail(payload);
 
-    if (response.statusText === "OK") return redirect("/users");
+    if (response.status === 200) return redirect("/users");
 
     throw new Error(`Failed to ${detailId ? "Update" : "Save"}`);
   } catch (error) {
@@ -56,8 +56,8 @@ export const saveOrEditUserDeatail = async ({ request }) => {
 export const usersLoader = async () => {
   try {
     const response = await getUsers();
-    if (response.statusText === "OK") return response.data;
-    throw new Error("Failed to load user details");
+    if (response.status === 200) return response.data;
+    throw new Error("Failed to load users");
   } catch (error) {
     throw error;
   }

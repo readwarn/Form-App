@@ -2,15 +2,15 @@
 import { details, categories } from "./routes/index.js";
 import express from "express";
 import mongoose from "mongoose";
+import dotenv from "dotenv";
 
+dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-mongoose.connect(
-  "mongodb+srv://reelee:physics522@cluster0.ltxb6.mongodb.net/oauth?retryWrites=true&w=majority"
-);
+mongoose.connect(process.env.MONGODB_BASEURL);
 
-app.use(function (req, res, next) {
+app.use((req, res, next) => {
   res.header("Access-Control-Allow-Credentials", true);
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
